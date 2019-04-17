@@ -1,6 +1,6 @@
 let apiUrl
 const apiUrls = {
-  production: 'https://snapback-to-reality.herokuapp.com/',
+  production: 'https://what-are-those-api.herokuapp.com/',
   development: 'http://localhost:4741'
 }
 
