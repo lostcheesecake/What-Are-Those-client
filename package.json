@@ -1,6 +1,6 @@
 {
-  "name": "SnapBack-to-Reality",
-  "homepage": "https://lostcheesecake.github.io/SnapBack-to-Reality-client",
+  "name": "What-Are-Those",
+  "homepage": "https://github.com/lostcheesecake/What-Are-Those-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
