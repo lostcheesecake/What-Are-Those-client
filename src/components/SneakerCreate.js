@@ -42,7 +42,7 @@ class SneakerCreate extends Component {
       },
       data: { sneaker }
     })
-      .then(responseData => { console.log(responseData); return responseData })
+      .then(responseData => { return responseData })
       .then(res => this.setState({ createdSneakerId: res.data.sneaker.id }))
       .catch(console.error)
   }

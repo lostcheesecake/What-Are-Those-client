@@ -3,7 +3,7 @@
 # FRONT END
 # Capstone Project
 
-Backend repo:
+Backend repo: https://github.com/lostcheesecake/What-Are-Those-api
 Website:
 Heroku Backend: https://what-are-those-api.herokuapp.com/
 

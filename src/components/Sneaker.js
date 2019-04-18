@@ -16,7 +16,6 @@ class Sneaker extends Component {
   }
 
   componentDidMount () {
-    console.log('Sneaker componentDidMount')
     axios(`${apiUrl}/sneakers/${this.props.match.params.id}`)
       .then(res => this.setState({ sneaker: res.data.sneaker }))
       .catch(console.error)

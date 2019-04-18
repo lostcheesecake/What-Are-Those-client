@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const SneakerForm = ({ sneaker, handleSubmit, handleChange, cancelPath }) => (
   <form onSubmit={handleSubmit}>
     <label>Brand</label>
-    <input
+    <input required
       placeholder="Brand"
       value={sneaker.brand}
       name="brand"
@@ -12,7 +12,7 @@ const SneakerForm = ({ sneaker, handleSubmit, handleChange, cancelPath }) => (
     />
 
     <label>Style</label>
-    <input
+    <input required
       placeholder="Style"
       value={sneaker.style}
       name="style"
@@ -20,7 +20,7 @@ const SneakerForm = ({ sneaker, handleSubmit, handleChange, cancelPath }) => (
     />
 
     <label>Color</label>
-    <input
+    <input required
       placeholder="Color"
       value={sneaker.color}
       name="color"

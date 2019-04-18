@@ -2,16 +2,23 @@ body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
+  background: url(https://www.nikeshoebot.com/wp-content/uploads/2018/07/Adidas-Yeezy-Pile-2-1024x525.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
 }
 
 .alert {
-  margin: 30px;
+  margin: 50px;
 }
 
 label {
   margin: 15px;
 }
 
-button {
-  margin: 10px;
+.content-container {
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, .5);
+  color: white;
+  width: 400px;
 }

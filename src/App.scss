@@ -1,6 +1,6 @@
-$success: #c7f282;
-$warning: #f1e681;
-$error: #f08181;
+$success: green;
+$warning: yellow;
+$error: red;
 $charcoal: #ccc;
 
 .flash-success,
@@ -35,6 +35,9 @@ $charcoal: #ccc;
   justify-content: center;
   margin: 15% auto 0;
   max-width: 600px;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, .5);
+  color: white;
 
   h3,
   input {
@@ -44,5 +47,8 @@ $charcoal: #ccc;
   button {
     align-self: flex-end;
     max-width: 200px;
+  }
+  header {
+  background: linear-gradient(black, white);
   }
 }

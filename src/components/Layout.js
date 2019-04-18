@@ -1,13 +1,11 @@
 import React from 'react'
-import Footer from './Footer'
 
 const Layout = props => (
-  <div>
+  <div className="content-container">
     <h1></h1>
 
     {props.children}
 
-    <Footer />
   </div>
 )
 
