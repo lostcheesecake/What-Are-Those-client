@@ -8,8 +8,11 @@ import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
-
-import Alert from 'react-bootstrap/Alert'
+import SneakerCreate from './components/SneakerCreate'
+import Sneakers from './components/Sneakers'
+import Sneaker from './components/Sneaker'
+import SneakerEdit from './components/SneakerEdit'
+import { AlertList } from 'react-bs-notifier'
 
 class App extends Component {
   constructor () {
@@ -17,7 +20,9 @@ class App extends Component {
 
     this.state = {
       user: null,
-      alerts: []
+      alerts: [],
+      timeout: 2000,
+      position: 'bottom-left'
     }
   }
 
@@ -25,23 +30,40 @@ class App extends Component {
 
   clearUser = () => this.setState({ user: null })
 
-  alert = (message, type) => {
-    this.setState({ alerts: [...this.state.alerts, { message, type }] })
+  alert = (message, type, headline = '', timeout = 2000) => {
+    const newAlert = {
+      id: (new Date()).getTime(),
+      type: type,
+      headline: headline,
+      message: message
+    }
+
+    this.setState(prevState => ({
+      alerts: [...prevState.alerts, newAlert]
+    }), () => {
+      setTimeout(() => {
+        const index = this.state.alerts.indexOf(newAlert)
+        if (index >= 0) {
+          this.setState(prevState => ({
+            alerts: [...prevState.alerts.slice(0, index), ...prevState.alerts.slice(index + 1)]
+          }))
+        }
+      }, timeout)
+    })
   }
 
   render () {
-    const { alerts, user } = this.state
+    const { alerts, user, timeout, position } = this.state
 
     return (
       <React.Fragment>
         <Header user={user} />
-        {alerts.map((alert, index) => (
-          <Alert key={index} dismissible variant={alert.type}>
-            <Alert.Heading>
-              {alert.message}
-            </Alert.Heading>
-          </Alert>
-        ))}
+
+        <AlertList
+          position={position}
+          alerts={alerts}
+          timeout={timeout}
+        />
         <main className="container">
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
@@ -54,6 +76,24 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/sign-out' render={() => (
+            <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/create-sneaker' render={() => (
+            <SneakerCreate alert={this.alert} clearUser={this.clearUser} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/show-sneakers' render={() => (
+            <Sneakers alert={this.alert} clearUser={this.clearUser} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/delete-sneaker' render={() => (
+            <Sneaker alert={this.alert} clearUser={this.clearUser} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/sneakers/:id' render={({ match }) => (
+            <Sneaker alert={this.alert} clearUser={this.clearUser} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/sneakers/:id/edit' render={({ match }) => (
+            <SneakerEdit alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
         </main>
       </React.Fragment>
