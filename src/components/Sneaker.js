@@ -29,16 +29,21 @@ class Sneaker extends Component {
       headers: { 'Authorization': `Token token=${user.token}` }
     })
       .then(() => this.setState({ deleted: true }))
-      .catch(console.error)
   }
 
   render () {
     const { sneaker, deleted } = this.state
+    const { user } = this.props
+    const isUploadedByUser = sneaker ? user.id === sneaker.user.id : false
+
+    const editButtonLink = <Link to={`/sneakers/${this.props.match.params.id}/edit`}>
+      <button>Edit</button>
+    </Link>
+    const deleteButtonLink = <button onClick={this.destroy}>Delete Sneaker</button>
 
     if (!sneaker) {
       return <p>Loading...</p>
     }
-
     if (deleted) {
       return <Redirect to='/show-sneakers' />
     }
@@ -48,10 +53,8 @@ class Sneaker extends Component {
         <h4>{sneaker.brand}</h4>
         <p>{sneaker.style}</p>
         <p>{sneaker.color}</p>
-        <button onClick={this.destroy}>Delete Sneaker</button>
-        <Link to={`/sneakers/${this.props.match.params.id}/edit`}>
-          <button>Edit</button>
-        </Link>
+        { isUploadedByUser ? editButtonLink : ''}
+        { isUploadedByUser ? deleteButtonLink : ''}
         <Link to="/show-sneakers">
           <button>Back to all Sneakers</button>
         </Link>
