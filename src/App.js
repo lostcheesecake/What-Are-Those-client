@@ -8,6 +8,10 @@ import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
+import SneakerCreate from './components/SneakerCreate'
+import Sneakers from './components/Sneakers'
+import Sneaker from './components/Sneaker'
+import SneakerEdit from './components/SneakerEdit'
 
 import Alert from 'react-bootstrap/Alert'
 
@@ -54,6 +58,24 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/sign-out' render={() => (
+            <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/create-sneaker' render={() => (
+            <SneakerCreate alert={this.alert} clearUser={this.clearUser} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/show-sneakers' render={() => (
+            <Sneakers alert={this.alert} clearUser={this.clearUser} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/delete-sneaker' render={() => (
+            <Sneaker alert={this.alert} clearUser={this.clearUser} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/sneakers/:id' render={({ match }) => (
+            <Sneaker alert={this.alert} clearUser={this.clearUser} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/sneakers/:id/edit' render={({ match }) => (
+            <SneakerEdit alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
         </main>
       </React.Fragment>
